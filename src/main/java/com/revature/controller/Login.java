@@ -28,16 +28,21 @@ public class Login extends HttpServlet {
 		ObjectMapper mapper = new ObjectMapper();
 		String out = "";
 		LoginUser temp = mapper.readValue(request.getInputStream(), LoginUser.class);
+		temp.setType(0);
 		log.trace("Login user and password : " + temp);
 		User user = userService.checkAuth(temp.getUserName(), temp.getPassword());
 		log.trace("Returned user from DB:  " + user);
 		if (user == null) {
-			out = mapper.writeValueAsString(null); 
-		}else {
+			out = mapper.writeValueAsString(null);
+		} else {
+			if (user.getUserRole() == 1)
+				temp.setType(1);
+			else
+				temp.setType(2);
 			request.getSession().setAttribute("userSession", user);
 			out = mapper.writeValueAsString(temp);
 		}
-		
+
 		PrintWriter pw = response.getWriter();
 		response.setContentType("application/json");
 		pw.write(out);
