@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revature.dto.LoginUser;
+
 
 
 @WebServlet( loadOnStartup = 1, urlPatterns= {"*.view"})
@@ -21,10 +24,23 @@ public class HeadServlet extends HttpServlet {
 	@Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println(request.getRequestURI());
-		log.trace("Inside HeadServlet");
 		log.trace(request.getRequestURI());
-		
-		request.getRequestDispatcher("partials/login.html").forward(request, response);
+		String url = request.getRequestURL().toString();
+		if(url.equals("http://localhost:8080/project_v1/login.view"))
+			request.getRequestDispatcher("partials/login.html").forward(request, response);
+		else if(url.equals("http://localhost:8080/project_v1/loadDashboard.view")) {
+			ObjectMapper mapper = new ObjectMapper();
+			LoginUser user = mapper.readValue(request.getInputStream(), LoginUser.class);
+			if(user.getType() == 2)
+				request.getRequestDispatcher("partials/employeedashboard.html").forward(request, response);
+			else
+				request.getRequestDispatcher("partials/managerdashboard.html").forward(request, response);
+		}
 	}
-
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doGet(req, resp);
+			
+	}
 }

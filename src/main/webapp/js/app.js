@@ -40,15 +40,15 @@ function processLogin(){
 
 function loadDashboard(user) {
 	console.log("in loadDashboard function");
-	console.log(user);
-//	var xhr = new XMLHttpRequest();
-//	xhr.onreadystatechange = function() {
-//		if (xhr.readyState == 4 && xhr.status == 200) {
-//			$('#view').html(xhr.responseText);
-//		}
-//	}
-//	xhr.open("GET", "login.view");
-//	xhr.send();
+	console.log("User in dashboard function is: " + user.type);
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			$('#view').html(xhr.responseText);
+		}
+	}
+	xhr.open("POST", "loadDashboard.view");
+	xhr.setRequestHeader("Content-type", "application/json");
+	xhr.send(JSON.stringify(user));
 }
-
 
