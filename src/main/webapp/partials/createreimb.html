@@ -1,0 +1,25 @@
+
+<div class="form-group">
+    <label for="exampleFormControlInput1">Amount</label>
+    <input type="number" class="form-control" id="reimb_amount" placeholder="Amount">
+  </div>
+    <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Reimb Type</label>
+  <select class="custom-select my-1 mr-sm-2" id="reimb_type">
+    <option selected>Choose...</option>
+    <option value="1">Relocation</option>
+    <option value="2">Travel</option>
+    <option value="3">Training</option>
+    <option value="4">Other</option>
+  </select>
+  <div class="mb-3">
+    <label for="validationTextarea">Description</label>
+    <textarea class="form-control is-invalid" id="reimb_description" placeholder="Required description" required></textarea>
+    <div class="invalid-feedback"></div>
+  </div>
+
+  <div class="custom-file">
+    <input type="file" class="custom-file-input" id="validatedCustomFile" required>
+    <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+    <div class="invalid-feedback">invalid file</div>
+  </div>
+  <button class="btn btn-primary" id="submit_reimb" type="submit">Create Reimb</button>

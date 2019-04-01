@@ -2,13 +2,18 @@ package com.revature.dao;
 
 import java.util.List;
 
-public interface Reimbursement {
+import com.revature.dto.Reimbursement;
+
+public interface ReimbursementDao {
 	
 	// Retrieve all Reimbursements from Reimbursement table 
 	public List<Reimbursement> getReimbursement();
 	
+	// Retrieve all Reimbursements from Reimbursement table for user 
+	public List<Reimbursement> getReimbursementsByUser(int userId);
+	
 	// Retrieve a Reimbursement by id from Reimbursement table
-	public Reimbursement getReimbursement(int id);
+	public Reimbursement getReimbursementByUser(int Userid);
 	
 	
 	// retrieve a Reimbursement by name from Reimbursement table
@@ -16,7 +21,7 @@ public interface Reimbursement {
 	
 	
 	// insert a Reimbursement into Reimbursement table
-	public void insertReimbursement(Reimbursement reimbursement);
+	public boolean insertReimbursement(Reimbursement reimb);
 	
 	
 	// update Reimbursement info

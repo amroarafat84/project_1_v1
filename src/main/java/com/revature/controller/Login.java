@@ -39,7 +39,9 @@ public class Login extends HttpServlet {
 				temp.setType(1);
 			else
 				temp.setType(2);
+			
 			request.getSession().setAttribute("userSession", user);
+			log.trace("User In Session" + request.getSession().getAttribute("userSession"));
 			out = mapper.writeValueAsString(temp);
 		}
 

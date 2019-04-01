@@ -5,24 +5,22 @@ import java.sql.Date;
 public class Reimbursement {
 	
 	private int reimbId;
-	private int reimbAmount;
+	private double reimbAmount;
 	private Date reimbSubmitted;
 	private Date reimbResolved;
 	private String reimbDescription;
 	private int reimbAuthor;
 	private int reimbResolver;
-	private String reimbType;
+	private int status;
+	private int reimbType;
 	
 	
 	public Reimbursement() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 
 
-	public Reimbursement(int reimbId, int reimbAmount, Date reimbSubmitted, Date reimbResolved, String reimbDescription,
-			int reimbAuthor, int reimbResolver, String reimbType) {
-		super();
+	public Reimbursement(int reimbId, double reimbAmount, Date reimbSubmitted, Date reimbResolved, String reimbDescription,
+			int reimbAuthor, int reimbResolver,int status, int reimbType) {
 		this.reimbId = reimbId;
 		this.reimbAmount = reimbAmount;
 		this.reimbSubmitted = reimbSubmitted;
@@ -30,6 +28,7 @@ public class Reimbursement {
 		this.reimbDescription = reimbDescription;
 		this.reimbAuthor = reimbAuthor;
 		this.reimbResolver = reimbResolver;
+		this.status = status;
 		this.reimbType = reimbType;
 	}
 
@@ -44,12 +43,12 @@ public class Reimbursement {
 	}
 
 
-	public int getReimbAmount() {
+	public double getReimbAmount() {
 		return reimbAmount;
 	}
 
 
-	public void setReimbAmount(int reimbAmount) {
+	public void setReimbAmount(double reimbAmount) {
 		this.reimbAmount = reimbAmount;
 	}
 
@@ -104,13 +103,25 @@ public class Reimbursement {
 	}
 
 
-	public String getReimbType() {
+	public int getReimbType() {
 		return reimbType;
 	}
 
 
-	public void setReimbType(String reimbType) {
+	public void setReimbType(int reimbType) {
 		this.reimbType = reimbType;
+	}
+	
+	
+
+
+	public int getStatus() {
+		return status;
+	}
+
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 
@@ -118,8 +129,8 @@ public class Reimbursement {
 	public String toString() {
 		return "Reimbursement [reimbId=" + reimbId + ", reimbAmount=" + reimbAmount + ", reimbSubmitted="
 				+ reimbSubmitted + ", reimbResolved=" + reimbResolved + ", reimbDescription=" + reimbDescription
-				+ ", reimbAuthor=" + reimbAuthor + ", reimbResolver=" + reimbResolver + ", reimbType=" + reimbType
-				+ "]";
+				+ ", reimbAuthor=" + reimbAuthor + ", reimbResolver=" + reimbResolver + ", status=" + status
+				+ ", reimbType=" + reimbType + "]";
 	}
 	
 	
