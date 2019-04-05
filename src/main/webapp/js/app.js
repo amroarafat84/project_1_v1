@@ -89,7 +89,19 @@ function create() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			$('#content').html(xhr.responseText);
 			// validation for create reimb
-			$("#submit_reimb").on('click', send_reimb);
+			$('#submit_reimb').on('click', ()=>{
+				 if($.isNumeric(document.getElementById("reimb_amount").value)){
+					 if(document.getElementById("reimb_description").value.length > 5)
+						 send_reimb();
+					 else
+						 $('#descMessage').html("Description should be more than 5 letters"); 
+				 }else{
+					 $('#amountMessage').html("Amount should be Numbers Only"); 
+					 console.log($.isNumeric(document.getElementById("reimb_amount").value));
+				 }
+			});
+			
+//			$("#submit_reimb").on('click', send_reimb);
 		}
 	}
 	xhr.open("GET", "create.view");
