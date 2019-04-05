@@ -4,12 +4,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.revature.connectionutil.ConnectionFactory;
 import com.revature.dao.ReimbursementDao;
+import com.revature.dto.ReimDto;
 import com.revature.dto.Reimbursement;
+import com.revature.dto.User;
 
 public class ReimbImp implements ReimbursementDao {
 	
@@ -17,8 +21,30 @@ public class ReimbImp implements ReimbursementDao {
 
 	@Override
 	public List<Reimbursement> getReimbursement() {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "select * from ERS_REIMBURSEMENT where REIMB_AUTHOR";
+		List<Reimbursement> list = new ArrayList<>();
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				Reimbursement r = new Reimbursement();
+				r.setReimbId(rs.getInt(1));
+				r.setReimbAmount(rs.getDouble(2));
+				r.setReimbSubmitted(rs.getDate(3));
+				r.setReimbResolved(rs.getDate(4));
+				r.setReimbDescription(rs.getString(5));
+				r.setReimbAuthor(rs.getInt(7));
+				r.setReimbResolver(rs.getInt(8));
+				r.setStatus(rs.getInt(9));
+				r.setReimbType(rs.getInt(10));
+				list.add(r);
+			}
+			return list;
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override
@@ -52,9 +78,24 @@ public class ReimbImp implements ReimbursementDao {
 	}
 
 	@Override
-	public void update(Reimbursement reimbursement) {
-		// TODO Auto-generated method stub
-
+	public boolean update(User user, ReimDto temp, int flag) {
+		String sql = "update ERS_REIMBURSEMENT set REIMB_RESOLVER = ?,"
+						+ " REIMB_STATUS_ID = ?, "
+						+ " REIMB_RESOLVED = CURRENT_DATE() "
+						+ "where REIMB_ID = ?";
+		
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, user.getUserId());
+			ps.setInt(2, flag);
+			ps.setInt(3, temp.getReimbId());
+			return ps.execute();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		
 	}
 
 	@Override
@@ -91,10 +132,10 @@ public class ReimbImp implements ReimbursementDao {
 				r.setReimbSubmitted(rs.getDate(3));
 				r.setReimbResolved(rs.getDate(4));
 				r.setReimbDescription(rs.getString(5));
-				r.setReimbAuthor(rs.getInt(6));
-				r.setReimbResolver(rs.getInt(7));
-				r.setStatus(rs.getInt(8));
-				r.setReimbType(rs.getInt(9));
+				r.setReimbAuthor(rs.getInt(7));
+				r.setReimbResolver(rs.getInt(8));
+				r.setStatus(rs.getInt(9));
+				r.setReimbType(rs.getInt(10));
 				list.add(r);
 			}
 			return list;

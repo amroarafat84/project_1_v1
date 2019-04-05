@@ -21,4 +21,34 @@
     <servlet-name>DisplayAllReimbForUser</servlet-name>
     <url-pattern>/displayReimbByUser</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DisplayAllReimb</display-name>
+    <servlet-name>DisplayAllReimb</servlet-name>
+    <servlet-class>com.revature.controller.DisplayAllReimb</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DisplayAllReimb</servlet-name>
+    <url-pattern>/displayReimbForManager</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Approved</display-name>
+    <servlet-name>Approved</servlet-name>
+    <servlet-class>com.revature.controller.Approved</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Approved</servlet-name>
+    <url-pattern>/approved</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Denied</display-name>
+    <servlet-name>Denied</servlet-name>
+    <servlet-class>com.revature.controller.Denied</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Denied</servlet-name>
+    <url-pattern>/denied</url-pattern>
+  </servlet-mapping>
 </web-app>

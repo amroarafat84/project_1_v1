@@ -1,9 +1,37 @@
-
+<!-- 
 <h1>Welcome to my demo app! Please log in </h1>
 	<div align="center">
 	<h3>Please Enter your Login info</h3>
-		<input type="text" id="user" placeholder="User Name" required><br>
-		<input type="password" id="password" placeholder="password" required><br>	
+		<input type="text" id="user" placeholder="User Name" ><br>
+		<input type="password" id="password" placeholder="password" ><br>	
 		<button class="btn btn-warning" id="login">Log in!</button>
 		<span id="message"></span>
-	</div>
+	</div>  -->
+	
+<nav class="navbar sticky-top navbar-dark bg-primary">
+  <p class="navbar-brand" >Reimbursement App</p>
+</nav>
+	
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <h5 class="card-title text-center">Sign In</h5>
+              <div class="form-label-group">
+                <input  id="user" class="form-control" placeholder="User Name" required autofocus>
+              </div>
+
+              <div class="form-label-group">
+                <input type="password" id="password" class="form-control" placeholder="Password" required>
+                <span id="message" style="color:red"></span>
+              </div>
+				<hr >
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" id="login">Sign in</button>
+              <hr class="my-4">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

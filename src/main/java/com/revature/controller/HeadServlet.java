@@ -41,6 +41,10 @@ public class HeadServlet extends HttpServlet {
 			request.getRequestDispatcher("partials/login.html").forward(request, response);
 		}else if(url.equals("http://localhost:8080/project_v1/allReimbForUser.view")) 
 			request.getRequestDispatcher("partials/allReimbForUser.html").forward(request, response);
+		else if(url.equals("http://localhost:8080/project_v1/allReimbForManager.view")) 
+			request.getRequestDispatcher("partials/allReimbForManager.html").forward(request, response);
+		else if(url.equals("http://localhost:8080/project_v1/editReimb.view")) 
+			request.getRequestDispatcher("partials/ReimbEdit.html").forward(request, response);
 	}
 
 	@Override

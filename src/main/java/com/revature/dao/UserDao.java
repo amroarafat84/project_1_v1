@@ -14,7 +14,7 @@ public interface UserDao {
 	
 	
 	// retrieve a Users by name from Users table
-	public User getUser(String name);
+	public User getUserById(int id);
 	
 	// retrieve a Users by name from Users table
 	public User getUserByUserName(String username);

@@ -2,7 +2,9 @@ package com.revature.dao;
 
 import java.util.List;
 
+import com.revature.dto.ReimDto;
 import com.revature.dto.Reimbursement;
+import com.revature.dto.User;
 
 public interface ReimbursementDao {
 	
@@ -25,7 +27,7 @@ public interface ReimbursementDao {
 	
 	
 	// update Reimbursement info
-	public void update(Reimbursement reimbursement);
+	public boolean update(User user, ReimDto temp,int flag);
 	
 	
 	// delete Reimbursement using a Reimbursement id

@@ -11,11 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.dto.ReimDto;
-import com.revature.dto.User;
 import com.revature.service.ReimbService;
 
 
-public class DisplayAllReimbForUser extends HttpServlet {
+public class DisplayAllReimb extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ReimbService rs = new ReimbService();
 
@@ -23,8 +22,7 @@ public class DisplayAllReimbForUser extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ObjectMapper mapper = new ObjectMapper();
 		String out = "";
-		User user = (User)request.getSession().getAttribute("userSession");
-		List<ReimDto> list = rs.getAllReimb(user.getUserId());
+		List<ReimDto> list = rs.getAllReimb();
 		if(list.size() >= 1)
 			out = mapper.writeValueAsString(list);
 		else

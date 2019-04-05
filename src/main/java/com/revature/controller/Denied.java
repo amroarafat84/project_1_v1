@@ -1,13 +1,13 @@
 package com.revature.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.log4j.Logger;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.dto.ReimDto;
@@ -15,28 +15,21 @@ import com.revature.dto.User;
 import com.revature.service.ReimbService;
 
 
-public class DisplayAllReimbForUser extends HttpServlet {
+public class Denied extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private ReimbService rs = new ReimbService();
-
+	private static Logger log = Logger.getLogger(Approved.class);
+	private ReimbService service = new ReimbService();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ObjectMapper mapper = new ObjectMapper();
-		String out = "";
-		User user = (User)request.getSession().getAttribute("userSession");
-		List<ReimDto> list = rs.getAllReimb(user.getUserId());
-		if(list.size() >= 1)
-			out = mapper.writeValueAsString(list);
-		else
-			out = mapper.writeValueAsString(null);
-		
-		PrintWriter pw = response.getWriter();
-		response.setContentType("application/json");
-		pw.write(out);
+		doPost(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		ObjectMapper mapper = new ObjectMapper();
+		String out = "";
+		ReimDto temp = mapper.readValue(request.getInputStream(), ReimDto.class);
+		User user = (User) request.getSession().getAttribute("userSession");
+		boolean result = service.deniedReimb(user, temp); 
 	}
 
 }

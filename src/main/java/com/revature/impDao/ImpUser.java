@@ -27,8 +27,30 @@ public class ImpUser implements UserDao {
 	}
 
 	@Override
-	public User getUser(String name) {
-		// TODO Auto-generated method stub
+	public User getUserById(int id) {
+		User user = new User();
+		String sql = "select * from ERS_USERS where ERS_USER_ID = ?";
+		try {
+			
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				user.setUserId(rs.getInt(1));
+				user.setUsername(rs.getString(2));
+				user.setPassword(rs.getString(3));
+				user.setFirstName(rs.getString(4));
+				user.setLastName(rs.getString(5));
+				user.setEmail(rs.getString(6));
+				user.setUserRole(rs.getInt(7));
+			}
+			return user;
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+			e.getMessage();
+		}
+		
 		return null;
 	}
 	
